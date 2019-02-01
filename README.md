@@ -1,0 +1,1 @@
+To run this you have to Configure Agular CLI and NPM and node and MongoDB in your system
