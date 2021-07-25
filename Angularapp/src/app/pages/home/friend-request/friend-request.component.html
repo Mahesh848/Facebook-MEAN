@@ -1,0 +1,36 @@
+<div class="fc">
+  <div class='container'>
+    <h2>Friendrequests</h2>
+    <li *ngFor='let req of receivedRequests'>
+      <div class='profile'>
+        <img src='{{req.profile}}' >
+      </div>
+      <div class='details'>
+        <span class='name'>{{req.name}}</span><br>
+        <span class='gender' *ngIf='req.gender === "M"'> Male</span>
+        <span class='gender' *ngIf='req.gender === "F"'>Female</span>
+      </div>
+      <div class='action'>
+        <span class='accept' (click)='acceptFriendrequest(req)' >Accept</span>
+        <span class='delete' (click)='deleteFriendrequest(req)' >Delete</span>
+      </div>
+    </li>
+    <div class='no-friendrequests' *ngIf='receivedRequests.length === 0'>
+      No New FriendRequests
+    </div>
+    <h2>People you may know</h2>
+    <li *ngFor='let person of peopleYouMayKnow'>
+      <div class='profile'>
+        <img src='{{person.profile}}' >
+      </div>
+      <div class='details'>
+        <span class='name'>{{person.firstname + ' '+ person.surname}}</span><br>
+        <span class='gender' *ngIf='person.gender === "M"'> Male</span>
+        <span class='gender' *ngIf='person.gender === "F"'>Female</span>
+      </div>
+      <div class='action'>
+        <span class='add-friend' (click)="sendAfriendRequest(person._id, person.firstname+' '+person.surname, person.profile, person.gender)">Add Friend</span>
+      </div>
+    </li>
+  </div>
+</div>

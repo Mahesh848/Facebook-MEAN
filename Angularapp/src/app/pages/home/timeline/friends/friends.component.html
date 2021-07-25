@@ -1,0 +1,25 @@
+<div class='found' *ngIf='friends.length > 0'>
+  <ul>
+    <li *ngFor='let friend of friends'>
+      <div class='user'>
+        <div class='profile'>
+          <img src='{{friend.profile}}'>
+        </div>
+        <div class='details'>
+          <span class='name'>{{friend.name}}</span><br>
+          <span class='gender' *ngIf='friend.gender === "M"'> Male</span>
+          <span class='gender' *ngIf='friend.gender === "F"'>Female</span>
+        </div>
+        <div class='add-friend'>
+          <i id='unfriend-btn' class='fas fa-caret-down'>Friends</i>
+          <div class='unfriend'>
+            <li (click)='unfriend(friend.id)'>UnFriend</li>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class='nofriends' *ngIf='friends.length === 0'>
+  <h4>You have no friends</h4>
+</div>

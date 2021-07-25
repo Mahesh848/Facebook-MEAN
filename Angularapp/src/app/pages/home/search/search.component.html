@@ -1,0 +1,33 @@
+<div class='users'>
+  <div class='not-found' *ngIf='users.length == 0'>
+    <h3>No Matches Found</h3>
+  </div>
+  <div class='found' *ngIf='users.length > 0'>
+    <ul>
+      <li *ngFor='let user of users'>
+        <div class='user'>
+          <div class='profile'>
+            <img src='{{user.profile}}'>
+          </div>
+          <div class='details'>
+            <span class='name'>{{user.firstname + ' '+ user.surname}}</span><br>
+            <span class='gender' *ngIf='user.gender === "M"'> Male</span>
+            <span class='gender' *ngIf='user.gender === "F"'>Female</span>
+          </div>
+          <div class='add-friend' *ngIf='userid != user._id && !checkForFriendRequests(user._id) && !checkForFriends(user._id)'>
+            <h4 (click)="sendAfriendRequest(user._id, user.firstname+' '+user.surname,user.profile,user.gender)">Add Friend</h4>
+          </div>
+          <div class='add-friend' *ngIf='checkForFriendRequests(user._id)'>
+            <p (click)= 'removeRequest(user._id)' >Friendrequest sent</p>
+          </div>
+          <div class='add-friend' *ngIf='checkForFriends(user._id)'>
+            <p>Friends</p>
+          </div>
+          <div class='add-friend' *ngIf='user._id === userid'>
+            <h4>You</h4>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

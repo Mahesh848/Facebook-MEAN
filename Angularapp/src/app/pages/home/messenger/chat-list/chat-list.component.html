@@ -1,0 +1,21 @@
+<li *ngFor='let frnd of friends'
+  (click)='selectUser(frnd)'
+  [class.active] = "isSelectedUser(frnd._id)"
+>
+  <div class='frnd-profile'>
+    <img src='{{frnd.profile}}'>
+  </div>
+  <div class='frnd-name'>
+    {{frnd.firstname + ' ' + frnd.surname}}
+    <span class='unread' *ngIf='frnd.unreadMessages >= 1000'>
+        {{1000+'+'}}
+    </span>
+    <span class='unread' *ngIf='frnd.unreadMessages <= 999 && frnd.unreadMessages !== 0'>
+        {{frnd.unreadMessages}}
+    </span>
+  </div>
+  <div class='on-line'>
+      <span [ngClass]="frnd.online === 'Y' ? 'online' : 'offline'"> </span>
+  </div>
+</li>
+

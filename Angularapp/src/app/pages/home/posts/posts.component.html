@@ -1,0 +1,104 @@
+<div class="bodi">
+  <div class="uploadpost">
+      <input type="file" (change)="postsOnchangeFunc($event)" placeholder="Upload A Post"><br>
+      <div class="preview" *ngIf='postImage !== null'>
+        <img src='{{postUrl}}' height="200px" width="200px"><br>
+        <textarea [(ngModel)]="postDesc" placeholder="Post Description......">
+
+        </textarea>
+      </div>
+      <button (click)="uploadPost()">Post</button>
+  </div>
+  <div class="posts">
+    <ul>
+      <li *ngFor='let post of posts; let i = index'>
+        <div class="post" *ngIf='canIshow(post)'>
+              <div class='uploader' *ngIf='post.type === 1 || post.type === 3'>
+                  <div class='uploader-profile'>
+                      <img src='{{post.sharerprofile}}' height="40px" width="40px" style="border-radius: 20px;">
+                  </div>
+                  <div class='uploader-name'>
+                    {{post.sharername + ' shared a post'}}<br>
+                    {{getTime(post.uploadedDate)}}
+                  </div>
+              </div>
+              <hr *ngIf='post.type === 1 || post.type === 3'>
+              <div class='uploader' *ngIf='post.type === 1 || post.type === 3'>
+                  <div class='uploader-profile'>
+                      <img src='{{post.uploaderprofile}}' height="40px" width="40px" style="border-radius: 20px;">
+                  </div>
+                  <div class='uploader-name' style='margin-top: 8px;'>
+                    {{post.uploadername}}<br>
+                  </div>
+              </div>
+              <div class='uploader' *ngIf='post.type === 2'>
+                  <div class='uploader-profile'>
+                      <img src='{{post.uploaderprofile}}' height="40px" width="40px" style="border-radius: 20px;">
+                  </div>
+                  <div class='uploader-name'>
+                    {{post.uploadername + ' updated his profile'}}<br>
+                    {{getTime(post.uploadedDate)}}
+                  </div>
+              </div>
+              <div class='uploader' *ngIf='post.type === 0'>
+                <div class='uploader-profile'>
+                    <img src='{{post.uploaderprofile}}' height="40px" width="40px" style="border-radius: 20px;">
+                </div>
+                <div class='uploader-name'>
+                  {{post.uploadername}}<br>
+                  {{getTime(post.uploadedDate)}}
+                </div>
+              </div>
+              <hr>
+              <div class='description'>
+                {{post.description}}
+              </div>
+              <div class="image" (click)="getPostDetails(post._id)">
+                <img src="{{post.location}}">
+              </div>
+              <hr>
+              <div class="likesandcomments">
+                <span class="like" (click)="like(post._id)"><i [ngClass]="likedOrNot(post._id)? 'fas fa-thumbs-up': 'far fa-thumbs-up'">Like</i></span>
+                <span class="comment" (click)="getPostDetails(post._id)"><i class="fas fa-comment">Comment</i></span>
+                <span class="share"><i class="fas fa-share">Share</i>
+                  <div class='sharing'>
+                    <li (click)='shareApost(post,1)'>Share With Friends</li>
+                    <li (click)='shareApost(post,3)'>Share With All</li>
+                  </div>
+                </span>
+              </div>
+              <div class="numbers">
+                <span class="n-likes">{{post.noOflikes}}</span>
+                <span class="n-comments">{{post.noOfcomments}}</span>
+                <span class="n-shares">{{post.shares}}</span>
+              </div>
+              <hr>
+              <div class='showcomments'>
+                <ul>
+                  <li *ngFor='let comment of post.comments; let j = index;'>
+                    <div class='commentor' >
+                        <div class='commentor-profile'>
+                            <img src='{{comment.userprofile}}' height="30px" width="30px" style="border-radius: 20px;">
+                        </div>
+                        <div class='commentor-name'>
+                            {{comment.username}}
+                        </div>
+                    </div>
+                    <div class='comment-text'>
+                      {{comment.comment}}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <hr>
+              <div class='comment-form'>
+                  <img src='{{userprofile}}' height="30px" width="30px" style="border-radius: 20px;">
+                  <form (ngSubmit)='uploadComment(post._id)' [formGroup]="commentForm" novalidate>
+                      <input formControlName='comment' type='text' placeholder="Comment...">
+                  </form>
+              </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+.navbar{
+  background-color: #3B5998;
+  display: flex;
+  width: 100%;
+}
+.heading {
+  width: 50%;
+  display: border-box;
+}
+.heading h1 {
+  color: white;
+  margin-left: 15%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+}
+.login{
+  width: 33%;
+  margin-left: 17%;
+  margin-top: 1%;
+}
+.login div, label {
+  margin-left: 2px;
+}
+.login label {
+  color: white;
+}
+.bodi{
+  display: flex;
+  width: 100%;
+  margin-top:2%;
+}
+.homeimage {
+  width: 40%;
+  margin-left: 10%;
+}
+.register {
+  margin-left: 5%;
+  width: 40%;
+}
+.register form div{
+  margin-top: 2%;
+  width: 100%;
+}
+.name input{
+  height: 30px;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+}
+.username input{
+  height: 30px;
+  width: 86%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+}
+.password input {
+  height: 30px;
+  width: 86%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+}
+.dob input {
+  height: 30px;
+  width: 86%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+}
+.gender input {
+  font-size: 20px;
+}
+.submit input {
+  height: 50px;
+  width: 50%;
+  margin-left: 15%;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  background-color: rgb(139, 139, 245);
+}
+

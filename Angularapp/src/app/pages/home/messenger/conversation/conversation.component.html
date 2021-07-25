@@ -1,0 +1,26 @@
+<div class='selected-user'>
+  <span class='name' *ngIf='selectedUser != null'>{{selectedUser.firstname+' '+selectedUser.surname}}</span><br>
+  <span class='last-seen' *ngIf='selectedUser != null'>Active {{lastSeen()}}</span>
+</div>
+<hr>
+<div #messageWrapper class='message-wrapper' *ngIf='selectedUser !== null'>
+  <ul *ngIf='conversation.length > 0'>
+    <li *ngFor='let message of conversation' [class.align-left]='!alignMessageRight(message.from)' [class.align-right]='alignMessageRight(message.from)' >
+      {{message.message}}
+    </li>
+  </ul>
+  <div class='seen' *ngIf='conversation.length > 0 && conversation[conversation.length - 1].from === userid && conversation[conversation.length - 1].read '>seen</div>
+  <div class='no-conversation' *ngIf='conversation.length === 0'>
+    <h1>Say Hi.</h1>
+  </div>
+</div>
+<div class='message-form' *ngIf='selectedUser !== null'>
+  <hr>
+  <form [formGroup]='messageForm'  novalidate>
+			<input class="message form-control" placeholder="Message......" (keyup)="sendMessage($event)" formControlName="message">
+	</form>
+</div>
+<div class='hint' *ngIf='selectedUser === null' >
+  <h1>Select a Friend to Chat.</h1>
+</div>
+

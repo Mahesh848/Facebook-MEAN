@@ -1,0 +1,30 @@
+.messenger-o {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  background-color: white;
+  padding-right: 6px;
+}
+.chat-list {
+  width: 24%;
+}
+.app-chat-list {
+  overflow-y: scroll;
+  height: 515px;
+}
+.chat-list .mahenger {
+  height: 50px;
+  text-align: center;
+}
+.mahenger span {
+  font-size: 180%;
+}
+hr {
+  width: 100%;
+  background-color: black;
+}
+.messages-container {
+  width: 77%;
+  border-left: solid 1px black;
+  height: 586px;
+}

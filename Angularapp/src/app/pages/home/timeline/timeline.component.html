@@ -1,0 +1,15 @@
+<div class='timeline'>
+  <div class='profile'>
+    <div class='image' style='float: left;'>
+        <img src='{{userProfile}}' height='200px;' width='200px;' style='border-radius: 95px;'>
+    </div>
+    <div class='name'>
+      <h2>{{username}}</h2>
+    </div>
+  </div>
+  <div class='navbar'>
+      <span (click)='gotoTimeline()'>TimeLine</span>
+      <span (click)='gotoFriends()'>Friends</span>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,57 @@
+  <div class="navbar">
+    <div class="heading">
+      <h1>facebook</h1>
+    </div>
+    <div class="login">
+      <form (ngSubmit)='login()' [formGroup]="loginForm" novalidate>
+        <div style="float: left;">
+          <label for="username">Email or Phone</label>
+          <div>
+            <input formControlName="username" type="text" name="username">
+          </div>
+        </div>
+        <div style="float: left;">
+          <label for="password">Password</label>
+          <div>
+            <input formControlName="password" type="password" name="password">
+          </div>
+        </div>
+        <div style="float: left;">
+          <div style="margin-top: 18px;">
+              <input [disabled]='!loginForm.valid' type="submit" value="Login" name="login">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="bodi">
+    <div class="homeimage">
+        <h2>Facebook helps you connect and share with the people in the world.</h2>
+        <img src="assets/logos/homeimage.png">
+    </div>
+    <div class="register">
+      <h1>Create an account</h1>
+      <form (ngSubmit)='register()' [formGroup]='registerForm' novalidate>
+        <div class="name">
+            <input type="text" formControlName="firstname" placeholder="Firstname" name="firstname">
+            <input type="text" formControlName="surname" placeholder="Surname" name="surname">
+        </div>
+        <div class="username">
+          <input type="text" formControlName="username" placeholder="Username" name="username">
+        </div>
+        <div class="password">
+          <input type="password" formControlName="password" placeholder="Password" name="password">
+        </div>
+        <div class="dob">
+          <input type="date" formControlName="dob" placeholder="DateOfBirth" name="dob">
+        </div>
+        <div class="gender">
+          <input formControlName="gender" type="radio" value="M">Male
+          <input formControlName="gender" type="radio" value="F">Female
+        </div>
+        <div class="submit">
+          <input [disabled]='!registerForm.valid' type="submit" value="SignUp">
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,152 @@
+<div class="navbar">
+  <div class="logo">
+    <img src="assets/logos/facebook.png" height='25px' width='25px'>
+    <form (ngSubmit)='search()' [formGroup]="searchForm">
+      <input formControlName="search" type="search" placeholder="Search">
+      <input type="submit" [disabled]='!searchForm.valid' value="S">
+    </form>
+  </div>
+  <div class="user" (click)='gotoTimeline()'>
+    <div class="profile">
+      <img src='{{userprofile}}' height='25px' width='25px'>
+    </div>
+    <div class="name">
+        {{username}}
+    </div>
+  </div>
+  <div class="home" (click)='gotoHome()'>
+    Home
+  </div>
+  <div class="friendrequest">
+    <div class='counter' *ngIf='unreadRequests !== 0 && unreadRequests <= 99'>
+      {{unreadRequests}}
+    </div>
+    <div class='counter' *ngIf='unreadRequests >= 100'>
+      {{99+'+'}}
+    </div>
+    <img class='friendrequest-btn' src="assets/logos/friendRequest.png" height='20px' width='20px'>
+    <div class="friendrequest-container">
+      <div class='container'>
+        <li *ngFor='let req of sentRequests'>
+          <div class='accept-profile' *ngIf='req.read'>
+              <img src='{{req.profile}}'>
+          </div>
+          <div class='accept-username' *ngIf='req.read'>
+            {{req.name + ' Accepted your Friendrequest'}}
+          </div>
+        </li>
+        <h3>Friendrequests</h3>
+        <li *ngFor='let req of receivedRequests'>
+          <div class='req-profile'>
+            <img src='{{req.profile}}' >
+          </div>
+          <div class='req-username'>
+            {{req.name}}
+          </div>
+          <div class='action'>
+            <span class='accept' (click)='acceptFriendrequest(req)' >Accept</span>
+            <span class='delete' (click)='deleteFriendrequest(req)' >Delete</span>
+          </div>
+        </li>
+        <div class='no-friendrequests' *ngIf='receivedRequests.length === 0'>
+          No New FriendRequests
+        </div>
+        <h3>People you may know</h3>
+        <li *ngFor='let person of peopleYouMayKnow'>
+          <div class='req-profile'>
+            <img src='{{person.profile}}' >
+          </div>
+          <div class='req-username'>
+            {{person.firstname+' '+person.surname}}
+          </div>
+          <div class='action'>
+            <span class='add-friend' (click)="sendAfriendRequest(person._id, person.firstname+' '+person.surname, person.profile, person.gender)">Add Friend</span>
+          </div>
+        </li>
+      </div>
+      <div (click)='gotoFriendsRequest()' class="seeAll">
+        See All
+      </div>
+    </div>
+  </div>
+  <div class="messenger">
+    <div class='counter' *ngIf='unreadMessages !== 0 && unreadMessages <= 99 && !inMessenger'>
+      {{unreadMessages}}
+    </div>
+    <div class='counter' *ngIf='unreadMessages >= 100 && !inMessenger'>
+      {{99+'+'}}
+    </div>
+    <img class='messenger-btn' src="assets/logos/messenger.png" height='20px' width='20px'>
+    <div class="message-container">
+      <h3>Messages</h3>
+      <div class='container'>
+        <h3>New</h3>
+        <li *ngFor='let msge of newMessages'>
+          <div class='msge-profile'>
+            <img [src]='getProfileOfSender(msge.from)'>
+          </div>
+          <div class='name-msge'>
+            <span class='sen-name'>{{getNameOfSender(msge.from)}}</span><br>
+            <span class='last-msge'>{{msge.message}}</span>
+          </div>
+        </li>
+        <div class='no-friendrequests' *ngIf='newMessages.length === 0'>
+          No New Messages
+        </div>
+        <h3>Old</h3>
+        <li *ngFor='let msge of oldMessages'>
+          <div class='msge-profile'>
+            <img [src]='getProfileOfSender(msge.from)'>
+          </div>
+          <div class='name-msge'>
+            <span class='sen-name'>{{getNameOfSender(msge.from)}}</span><br>
+            <span class='last-msge'>{{msge.message}}</span>
+          </div>
+        </li>
+        <div class='no-friendrequests' *ngIf='oldMessages.length === 0'>
+          No Old Messages
+        </div>
+      </div>
+      <div (click)='gotoMessenger()' class="seeAll">See All</div>
+    </div>
+  </div>
+  <div class="notification">
+    <div class='counter' *ngIf='unreadNotifications !== 0 && unreadNotifications <= 99 && !inNotification'>
+      {{unreadNotifications}}
+    </div>
+    <div class='counter' *ngIf='unreadNotifications >= 100 && !inNotification'>
+      {{99+'+'}}
+    </div>
+    <img class='notification-btn' src="assets/logos/notification.png" height='20px' width='20px'>
+    <div class="notification-container">
+        <h3>Notifications</h3>
+        <div class='container'>
+          <li *ngFor='let note of notifications'
+              [class.unreadnotification] = "!note.read"
+              (click)='getPostDetails(note.postid)'
+              >
+              <div class='notification-profile'>
+                <img src='{{note.profile}}'>
+              </div>
+              <div class='notification-content'>
+                {{note.notification}}
+              </div>
+          </li>
+          <div class='no-friendrequests' *ngIf='notifications.length === 0'>
+            No Notifications
+          </div>
+        </div>
+        <div (click)='gotoNotifications()' class="seeAll">See All</div>
+    </div>
+  </div>
+  <div class="settings">
+    <i id='settings-btn' class="fas fa-caret-down"></i>
+    <div class='options'>
+      <li (click)='gotoProfile()'>Settings</li>
+      <li (click)='gotoAbout()' >About Us</li>
+      <li (click)='logout()'>Log Out</li>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

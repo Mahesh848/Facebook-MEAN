@@ -1,0 +1,34 @@
+.notification-wrapper {
+  width: 50%;
+  margin-left: 20%;
+  margin-top: 10px;
+}
+.notification-wrapper li {
+  display: flex;
+  width: 100%;
+  margin-top: 2px;
+  background-color: white;
+  border-bottom:solid 1px rgba(100, 100, 100, .30);
+  cursor: pointer;
+  padding: 2px;
+}
+.notification-profile {
+  width: 10%;
+}
+.notification-profile img {
+  margin-left: 3%;
+  width: 60px;
+  height: 60px;
+  border-radius: 35px;
+  cursor: pointer;
+}
+.notification-content {
+  margin-top: 25px;
+  width: 85%;
+  margin-left: 3%;
+  font-weight: 800;
+}
+h1 {
+  text-align: center;
+  background-color: white;
+}

@@ -1,0 +1,145 @@
+<div class='user'>
+  <div class='details'>
+    <div *ngIf="user._id == userid" class='can-edit'>
+        <div class='profile' *ngIf='!edit'>
+            <img src='{{user.profile}}'>
+        </div>
+        <div class='profile' *ngIf='edit && profileUrl!="" '>
+          <img src='{{profileUrl}}' >
+        </div>
+        <p (click)='change()' style='margin-left: 250px; color: blue; padding: 2px; cursor: pointer;'>Edit</p>
+        <table *ngIf='!edit'>
+            <tr>
+              <td>
+                  FirstName:
+              </td>
+              <td>
+                  {{user.firstname}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  SurName:
+              </td>
+              <td>
+                  {{user.surname}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                UserName:
+              </td>
+              <td>
+                {{user.username}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Password:
+              </td>
+              <td>
+                .......
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  Date Of Birth:
+              </td>
+              <td>
+                  {{user.dob}}
+              </td>
+            </tr>
+          </table>
+          <table *ngIf='edit'>
+                <tr>
+                  <td>
+                    Profile:
+                  </td>
+                  <td>
+                    <input type='file' (change)='profileOnchangeFunc($event)'>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                      FirstName:
+                  </td>
+                  <td>
+                      <input type='text' [(ngModel)]="user.firstname">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                      SurName:
+                  </td>
+                  <td>
+                      <input type='text' [(ngModel)]="user.surname">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    UserName:
+                  </td>
+                  <td>
+                      <input type='text' [(ngModel)]="user.username">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Password:
+                  </td>
+                  <td>
+                      <input type='text' [(ngModel)]="user.password">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                      Date Of Birth:
+                  </td>
+                  <td>
+                      <input type='date' [(ngModel)]="user.dob">
+                  </td>
+                </tr>
+                <button (click)='saveUser()' style='cursor: pointer; margin-left: 200px; margin-top: 10px; background-color: rgb(183, 183, 190); border: none; padding: 5px; color: blue;'>Save</button>
+          </table>
+    </div>
+    <div *ngIf="user._id != userid" class='cannot-edit'>
+      <div class='profile'>
+          <img src='{{user.profile}}'>
+      </div>
+      <table>
+        <tr>
+          <td>
+              FirstName:
+          </td>
+          <td>
+              {{user.firstname}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+              SurName:
+          </td>
+          <td>
+              {{user.surname}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+              Date Of Birth:
+          </td>
+          <td>
+              {{user.dob}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+              Gender:
+          </td>
+          <td>
+              {{user.gender}}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

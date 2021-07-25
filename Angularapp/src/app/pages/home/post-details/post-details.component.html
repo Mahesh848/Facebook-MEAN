@@ -1,0 +1,54 @@
+<div class="post">
+  <div class='uploader'>
+    <div class='uploader-profile'>
+        <img src='{{post.uploaderprofile}}' height="40px" width="40px" style="border-radius: 20px;">
+    </div>
+    <div class='uploader-name'>
+      {{post.uploadername}}<br>
+      {{getTime(post.uploadedDate)}}
+    </div>
+  </div>
+  <hr>
+  <div class='description'>
+    {{post.description}}
+  </div>
+  <div class="image">
+    <img src="{{post.location}}">
+  </div>
+  <hr>
+  <div class="likesandcomments">
+    <span class="like" (click)="like(post._id)"><i [ngClass]="likedOrNot(post._id)? 'fas fa-thumbs-up': 'far fa-thumbs-up'">Like</i></span>
+    <span class="comment"><i class="fas fa-comment">Comment</i></span>
+    <span class="share"><i class="fas fa-share">Share</i></span>
+  </div>
+  <div class="numbers">
+    <span class="n-likes">{{post.noOflikes}}</span>
+    <span class="n-comments">{{post.noOfcomments}}</span>
+    <span class="n-shares">{{post.shares}}</span>
+  </div>
+  <hr>
+  <div #comments class='showcomments'>
+    <ul>
+      <li *ngFor='let comment of post.comments; let j = index ' >
+        <div class='commentor'>
+            <div class='commentor-profile'>
+                <img src='{{comment.userprofile}}' height="30px" width="30px" style="border-radius: 20px;">
+            </div>
+            <div class='commentor-name'>
+                {{comment.username}}
+            </div>
+        </div>
+        <div class='comment-text'>
+          {{comment.comment}}
+        </div>
+      </li>
+    </ul>
+  </div>
+  <hr>
+  <div class='comment-form'>
+      <img src='{{userprofile}}' height="30px" width="30px" style="border-radius: 20px;">
+      <form (ngSubmit)='uploadComment(post._id)' [formGroup]="commentForm" novalidate>
+          <input formControlName='comment' type='text' placeholder="Comment...">
+      </form>
+  </div>
+ </div>

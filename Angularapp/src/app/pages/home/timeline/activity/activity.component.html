@@ -1,0 +1,77 @@
+<div class='posts'>
+  <ul>
+    <li *ngFor='let post of posts; let i = index'>
+      <div class="post">
+            <div class='activity' *ngIf='post.uploader === userid && post.likedBy.length > 0 && post.comments.length > 0'>
+              <h3>You uploaded this post and liked and commented on this post</h3>
+            </div>
+            <div class='activity' *ngIf='post.uploader === userid && post.likedBy.length === 0 && post.comments.length > 0'>
+                <h3>You uploaded this post and commented on this post</h3>
+            </div>
+            <div class='activity' *ngIf='post.uploader === userid && post.likedBy.length > 0 && post.comments.length === 0'>
+                <h3>You uploaded this post and liked this post</h3>
+            </div>
+            <div class='activity' *ngIf='post.uploader === userid && post.likedBy.length === 0 && post.comments.length === 0'>
+                <h3>You uploaded this post </h3>
+            </div>
+            <div class='activity' *ngIf='post.uploader !== userid && post.likedBy.length > 0 && post.comments.length > 0'>
+                <h3>You Liked  and Commented on this post</h3>
+            </div>
+            <div class='activity' *ngIf='post.uploader !== userid && post.likedBy.length > 0 && post.comments.length == 0'>
+              <h3>You Liked This Post</h3>
+            </div>
+            <div class='activity' *ngIf='post.uploader !== userid && post.likedBy.length == 0 && post.comments.length > 0'>
+                <h3>You Commented on this post</h3>
+              </div>
+            <div class='uploader'>
+              <div class='uploader-profile'>
+                  <img src='{{post.uploaderprofile}}' height="40px" width="40px" style="border-radius: 20px;">
+              </div>
+              <div class='uploader-name'>
+                {{post.uploadername}}<br>
+                {{getTime(post.uploadedDate)}}
+              </div>
+            </div>
+            <hr>
+            <div class='description'>
+              {{post.description}}
+            </div>
+            <div class="image" (click)="getPostDetails(post._id)">
+              <img src="{{post.location}}">
+            </div>
+            <hr>
+            <div class="likesandcomments">
+              <span class="like"><i class='fas fa-thumbs-up'>Like</i></span>
+              <span class="comment" (click)="getPostDetails(post._id)"><i class="fas fa-comment">Comment</i></span>
+              <span class="share"><i class="fas fa-share">Share</i></span>
+            </div>
+            <div class="numbers">
+              <span class="n-likes">{{post.noOflikes}}</span>
+              <span class="n-comments">{{post.noOfcomments}}</span>
+              <span class="n-shares">{{post.shares}}</span>
+            </div>
+            <hr>
+            <div class='showcomments'>
+              <ul>
+                <li *ngFor='let comment of post.comments; let j = index;'>
+                  <div class='commentor' >
+                      <div class='commentor-profile'>
+                          <img src='{{comment.userprofile}}' height="30px" width="30px" style="border-radius: 20px;">
+                      </div>
+                      <div class='commentor-name'>
+                          {{comment.username}}
+                      </div>
+                  </div>
+                  <div class='comment-text'>
+                    {{comment.comment}}
+                  </div>
+                </li>
+              </ul>
+            </div>
+      </div>
+    </li>
+  </ul>
+  <div class='no-activity' *ngIf='posts.length === 0'>
+    <h4>You have no activity</h4>
+  </div>
+</div>

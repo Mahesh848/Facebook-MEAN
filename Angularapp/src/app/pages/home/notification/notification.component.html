@@ -1,0 +1,14 @@
+<h1>Notifications</h1>
+<div class='notification-wrapper'>
+  <li *ngFor='let note of notifications'
+  [class.unreadnotification] = "!note.read"
+  (click)='getPostDetails(note.postid)'
+  >
+    <div class='notification-profile'>
+      <img src='{{note.profile}}'>
+    </div>
+    <div class='notification-content'>
+      {{note.notification}}
+    </div>
+  </li>
+</div>
